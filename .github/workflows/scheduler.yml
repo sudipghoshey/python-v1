@@ -33,9 +33,12 @@ jobs:
           git config --local user.name "GitHub Actions"
 
       - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git add processed_data.csv
-          git commit -m "Auto-update CSV" || echo "No changes to commit."
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
+          git commit -m "Auto-update CSV" || echo "No changes to commit"
+          
+          # Set the remote URL with the GITHUB_TOKEN
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          
+          # Push the changes
+          git push origin HEAD:${{ github.ref }}
