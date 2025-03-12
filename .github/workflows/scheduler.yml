@@ -32,5 +32,5 @@ jobs:
           git config --global user.name "sudip.ghosh.ey"
           git config --global user.email "sudip.ghosh.ey@gmail.com"
           git add processed_data.csv
-          git commit -m "Auto-update CSV" || echo "No changes to commit"
+          git commit -m "Auto-update CSV" || echo "No changes to commit."
           git push
